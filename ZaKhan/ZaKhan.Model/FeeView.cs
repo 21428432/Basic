@@ -14,7 +14,7 @@ namespace ZaKhan.Model
         public int FeeId { get; set; }
 
         [Required]
-        [Display(Name = "Booking Price")]
+        [Display(Name = "Price")]
         public double Price { get; set; }
 
         [Required]

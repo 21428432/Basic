@@ -15,7 +15,7 @@ namespace ZaKhan.BusinessLogic
         {
             using (var bookingrepo = new BookingRepository())
             {
-                return bookingrepo.GetAll().Select(x => new BookingModel() { BookingID = x.BookingID, Username = x.Username, BranchName = x.BranchName, OptometristName = x.OptometristName, BookedTime = x.BookedTime, BookedDate = x.BookedDate, TotalCost = x.TotalCost }).ToList();
+                return bookingrepo.GetAll().Select(x => new BookingModel() { BookingID = x.BookingID, Username = x.Username, BranchName = x.BranchName, OptometristName = x.OptometristName, BookedTime = x.BookedTime, BookedDate = x.BookedDate, TotalCost = x.TotalCost, Status = x.Status }).ToList();
             }
         }
 

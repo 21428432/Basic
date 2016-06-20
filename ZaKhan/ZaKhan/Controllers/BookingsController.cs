@@ -56,9 +56,7 @@ namespace ZaKhan.Controllers
             //book.Branch = branchNames;
             book.Branch = branchNames;
 
-            //ViewData["optometristBranch"] = new SelectList(_storelocationBusiness.GetAllLocations(), "Description", "Description");
-
-            //ViewData["optometrists"] = new SelectList(_optometristBusiness.GetOptometrists(), "OptometristName", "OptometristName");
+           
             return View(book);
         }
 
@@ -83,20 +81,6 @@ namespace ZaKhan.Controllers
             }
             return Json(optometristNames, JsonRequestBehavior.AllowGet);
         }
-
-
-
-
-        //[HttpPost]
-        //public ActionResult SelectTable(BookingModel bookingModel, string BranchName)
-        //{
-            
-        //    if()
-
-        //    return Json(BranchName, JsonRequestBehavior.AllowGet);
-        //}
-
-
 
 
 
@@ -145,24 +129,16 @@ namespace ZaKhan.Controllers
                     else
                     {
                        
-
                         foreach (Patient p in lst)
                         {
-                            string email = p.Email;
-                            var mail = new Email();
-                            var message = "Hello" + " " + p.FirstName + " " + p.LastName + " " +
-                            "This is a notification to inform you that you have made a booking with ZaKhan Optometrists. If This is not you, please contact us itstudents.dut.ac.za/201615";
-                            mail.SendEmail(email, message);
+                            TempData["message"] = string.Format("{0} Please Confirm Your Booking", p.FirstName + " " + p.LastName);
                         }
-
-                       
-
 
                         bookingModel.Username = User.Identity.GetUserName();
                         bookingModel.TotalCost = _feeBusiness.CalTot();
                         bookingModel.Status = Status;
                         _bookingBusiness.Insert(bookingModel);
-                        return RedirectToAction("Bookings","Booking");
+                        return RedirectToAction("Confirm","Booking");
                     }
                 }
 
@@ -341,8 +317,6 @@ namespace ZaKhan.Controllers
 
 
 
-      
-
         //Step One of Two for creating Booking Confirm , Getting data
         public ActionResult Confirm()
         {
@@ -390,38 +364,5 @@ namespace ZaKhan.Controllers
             }
             return View();
         }
-
-        //Step One of Two for canceling Booking, Getting data
-        public ActionResult Cancel()
-        {
-            ApplicationDbContext db = new ApplicationDbContext();
-            Booking booking = db.Bookings.SingleOrDefault(x => x.Username.Equals(User.Identity.Name));
-            if (booking == null)
-            {
-                return HttpNotFound();
-            }
-            return View(booking);
-
-        }
-
-        //Step Two of Two for canceling Booking , Posting data
-        [HttpPost]
-        public ActionResult Cancel(Booking bookingView, string Status = "Canceled")
-        {
-            if (ModelState.IsValid)
-            {
-
-                ApplicationDbContext db = new ApplicationDbContext();
-                string user = User.Identity.GetUserName();
-                bookingView.Status = Status;
-                db.Entry(bookingView).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Bookings","Booking");
-
-            }
-            return View();
-        }
-
-       
     }
 }

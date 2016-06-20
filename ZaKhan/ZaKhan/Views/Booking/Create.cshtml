@@ -87,37 +87,7 @@
     </body>
     </html>
     <div class="form-horizontal">
-
-
         <hr/>
-
-
-
-        @*<script type="text/javascript">
-
-                    $(document).ready(function () {
-                        $("#ddlBranch").change(function () {
-                            $.ajax({
-                                type: "post",
-                                url: "/Booking/GetOptometrist",
-                                data: { Description: $("#ddlBranch").val() },
-                                datatype: "json",
-                                traditional: true,
-                                success: function (data) {
-                                    var optometrist = "<select id='ddlOptometrist'>";
-                                    optometrist = optometrist + '<option value="">Select an optometrist</option>';
-                                    for (var i = 0; i < data.length; i++)
-                                    {
-                                        optometrist = optometrist + "<option value=" + data[i].Value + ">" + data[i].Text + "</option>";
-                                    }
-                                    optometrist = optometrist + "</select>";
-                                    $("#ddlOptometrist").html(optometrist);
-                                }
-                            });
-                        });
-                    });
-                </script>*@
-
 
         <script src="Scripts/jquery-1.10.2.js" type="text/javascript"></script>
 
@@ -191,6 +161,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-success"/>
+                |@Html.ActionLink("Update", "MyAccount", "PatientUpdate", null, new { @class = "btn btn-primary" }) |
             </div>
         </div>
     </div>
@@ -199,14 +170,14 @@
 <div>
     @if (User.IsInRole("Admin").Equals(true))
     {
-        @Html.ActionLink("Cancel and return to List", "Index", "Booking", null, new
+        @Html.ActionLink("Back", "Index", "Booking", null, new
         {
             @class = "btn btn-warning"
         })
     }
     else
     {
-        @Html.ActionLink("Cancel and return to List", "Bookings", "Booking", null, new
+        @Html.ActionLink("Back", "Bookings", "Booking", null, new
         {
             @class = "btn btn-warning"
         })

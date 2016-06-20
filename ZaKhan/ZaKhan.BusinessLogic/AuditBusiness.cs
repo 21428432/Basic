@@ -24,6 +24,16 @@ namespace ZaKhan.BusinessLogic
            }
        }
 
+       public List<AuditView> Search(string SearchString)
+       {
+           using (var patientrepo = new AuditRepository())
+           {
+               return patientrepo.GetAll().Select(x => new AuditView() { UserName = x.UserName, Event = x.Event, TimeAccessed = x.TimeAccessed, AuditID = x.AuditID }).Where(s => s.UserName.ToUpper().Contains(SearchString.ToUpper())
+               || s.UserName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+           }
+       }
+
+
        private static Audit ConvertToAudit(AuditView modelView)
        {
            var dev = new Audit

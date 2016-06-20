@@ -6,7 +6,19 @@
         <h2>Tracked User Activity</h2>
     </div>
     <div class="panel-body">
-        <table class="table">
+        @using (Html.BeginForm())
+        {
+            <p>
+                <h4>
+                    <i><b>Name</b></i>
+                    @Html.DropDownList("SearchString", (SelectList)ViewData["UName"], "Select an Username", new { Style = "width:250px" })
+                    <input type="submit" value="Search" />
+                </h4>
+            </p>
+           
+        }
+
+        <table class="table table-striped table-bordered table-condensed">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.UserName)
@@ -48,7 +60,7 @@
         <br/>
         <br/>
         <div>
-        @Html.ActionLink("Cancel and return to List", "Admin", "Login", null, new
+        @Html.ActionLink("Back", "Admin", "Login", null, new
                     {
                         @class = "btn btn-success"
                     })

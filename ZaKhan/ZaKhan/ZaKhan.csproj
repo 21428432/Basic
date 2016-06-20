@@ -440,7 +440,6 @@
     <Content Include="Views\Fee\Details.cshtml" />
     <Content Include="Views\Fee\Edit.cshtml" />
     <Content Include="Views\Fee\Index.cshtml" />
-    <Content Include="Views\Booking\Cancel.cshtml" />
     <Content Include="Views\Booking\Confirm.cshtml" />
   </ItemGroup>
   <ItemGroup>

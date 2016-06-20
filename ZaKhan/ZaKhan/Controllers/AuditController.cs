@@ -12,10 +12,16 @@ namespace ZaKhan.Controllers
     {
       public AuditBusiness _auditRecords = new AuditBusiness();
 
-        public ActionResult AuditRecords()
-        {
+      public ActionResult AuditRecords(string SearchString)
+       {
+            ViewData["UName"] = new SelectList(_auditRecords.ViewAll(), "UserName", "UserName");
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                return View(_auditRecords.Search(SearchString));
+            }
             return View(_auditRecords.ViewAll());
-        }
+       }
 	}
 
     public class AuditAttribute : ActionFilterAttribute

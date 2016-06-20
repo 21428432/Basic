@@ -14,7 +14,7 @@
     <p>
         @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-primary" })
     </p>
-    <table class="table">
+    <table class="table table-striped table-bordered table-condensed">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Username)
@@ -63,8 +63,8 @@
 
                         <img src="~/Content/Images/icon-calendar.png" />  Calendar
                     </button>
-                  
-                    @Html.ActionLink("Delete", "Delete", new {id = item.BookingID}, new {@class = "btn btn-danger"})
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BookingID }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }

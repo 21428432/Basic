@@ -15,7 +15,7 @@
         @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-primary" })
     </p>
 
-    <table class="table">
+    <table class="table table-striped table-bordered table-condensed">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Price)
@@ -45,16 +45,16 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new {id = item.FeeId}, new {@class = "btn btn-primary"}) |
-                    @Html.ActionLink("Details", "Details", new {id = item.FeeId}, new {@class = "btn btn-success"}) |
-                    @Html.ActionLink("Delete", "Delete", new {id = item.FeeId}, new {@class = "btn btn-danger"})
+                    | @Html.ActionLink("Edit", "Edit", new { id = item.FeeId }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.FeeId }, new { @class = "btn btn-success" }) |
+
 
                 </td>
             </tr>
         }
 
     </table>
-    @Html.ActionLink("Cancel and return to List", "Admin", "Login", null, new
+    @Html.ActionLink("Back", "Admin", "Login", null, new
                     {
                         @class = "btn btn-success"
                     })
